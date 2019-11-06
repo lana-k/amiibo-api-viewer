@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="page">
+    <ul>
+      <li v-for="(record, index) in records" :key="index">{{record.API}}</li>
+    </ul>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import { API } from '../utils.ts'
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  name: 'Home',
+  data () {
+    return {
+      records: null
+    }
+  },
+  created () {
+    API.getEntries()
+      .then(
+        (data) => {
+          this.records = data.entries.slice(0, 10)
+          console.log(data)
+        }
+      )
+      .catch(
+        function (err) {
+          console.log('Fetch error', err)
+        }
+      )
   }
 }
 </script>
