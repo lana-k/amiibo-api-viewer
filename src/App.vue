@@ -1,32 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <header>
+      <button @click="$router.push('/')">
+        Home
+      </button>
+      <button @click="$router.push('/categories')">
+        Categories
+      </button>
+      <button @click="$router.push('/random')">
+        Random
+      </button>
+    </header>
     <router-view/>
   </div>
 </template>
 
 <style>
+
+body {
+  margin: 0px;
+}
+header {
+  height: 56px;
+  width: 100%;
+  background-color: #E65540;
+  position:fixed;
+  top: 0px;
+  left: 0px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
