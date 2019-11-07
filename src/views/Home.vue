@@ -1,13 +1,19 @@
 <template>
   <div class="page">
     <ul>
-      <li v-for="(record, index) in records" :key="index">{{record.API}}</li>
+      <li
+      v-for="(record, index) in records"
+      :key="index"
+      @click="$router.push({
+        path:'/details',
+        query: { title: record.API }
+        })"
+      >{{record.API}}</li>
     </ul>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import { API } from '../utils.ts'
 
