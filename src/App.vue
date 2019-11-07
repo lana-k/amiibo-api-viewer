@@ -12,13 +12,29 @@
       </button>
     </header>
     <router-view/>
+    <my-footer></my-footer>
   </div>
 </template>
 
-<style>
+<script lang="ts">
+import Vue from 'vue'
+import MyFooter from '@/components/MyFooter.vue'
 
+export default {
+  name: 'App',
+  components: {
+    MyFooter
+  }
+}
+</script>
+
+<style>
+html {
+  height: 100%;
+}
 body {
   margin: 0px;
+  height: 100%;
 }
 header {
   height: 56px;
@@ -28,7 +44,11 @@ header {
   top: 0px;
   left: 0px;
 }
+
 #app {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
