@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Categories from '../views/Categories.vue'
 import Random from '../views/Random.vue'
 import Details from '../views/Details.vue'
+import Category from '../views/Category.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,10 @@ const routes = [
   {
     path: '/details',
     component: Details
+  },
+  {
+    path: '/categories/:name',
+    component: Category
   }
 ]
 

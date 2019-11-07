@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
 import { API } from '../utils.ts'
 
 export default {
