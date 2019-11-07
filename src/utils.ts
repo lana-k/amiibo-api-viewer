@@ -1,7 +1,7 @@
 class API {
   static baseURL:string = 'https://api.publicapis.org/'
 
-  static getEntries (params: object) {
+  static getEntries (params?: object) {
     var url = new URL(`${this.baseURL}entries`)
     url.search = new URLSearchParams(<URLSearchParams>params).toString()
     return fetch(url.toString())
@@ -16,7 +16,7 @@ class API {
       })
   }
 
-  static getRandom (params: object) {
+  static getRandom (params?: object) {
     var url = new URL(`${this.baseURL}random`)
     url.search = new URLSearchParams(<URLSearchParams>params).toString()
     return fetch(url.toString())
