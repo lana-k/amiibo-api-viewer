@@ -50,3 +50,16 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+button {
+  height: 48px;
+  background-color: #E65540;
+  color: #fff;
+  border-style: none;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: #b82a14;
+}
+</style>

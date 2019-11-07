@@ -1,10 +1,10 @@
 <template>
   <div class="page">
-    <h1>{{ record.API }}</h1>
-    <div v-if="record.Auth">Auth: {{ record.Auth }}</div>
-    <p>{{ record.Description }}</p>
-    <div>Category: {{ record.Category }}</div>
-    <a :href="record.Link">Link</a>
+    <h1>{{ record.name }}</h1>
+    <div>amiiboSeries: {{ record.amiiboSeries }}</div>
+    <div>character: {{ record.character }}</div>
+    <div>gameSeries: {{ record.gameSeries }}</div>
+    <div>amiiboSeries: {{ record.amiiboSeries }}</div>
 
     You may be interested in:
     <ul>
@@ -18,13 +18,13 @@ import Vue from 'vue'
 import { API } from '../utils'
 
 interface Record {
-      API: string;
-      Auth: string;
-      Description: string;
-      HTTPS: boolean;
-      Cors: string;
-      Link: string;
-      Category: string;
+      amiiboSeries: string;
+      character: string;
+      gameSeries: string;
+      image: string;
+      name: string;
+      release: object;
+      type: string;
     }
 
 export default Vue.extend({
@@ -32,13 +32,13 @@ export default Vue.extend({
   data () {
     return {
       record: {
-        API: '',
-        Auth: '',
-        Description: '',
-        HTTPS: true,
-        Cors: '',
-        Link: '',
-        Category: ''
+        amiiboSeries: '',
+        character: '',
+        gameSeries: '',
+        image: true,
+        name: '',
+        release: '',
+        type: ''
       },
       otherRelevantRecords: []
     }
@@ -60,15 +60,13 @@ export default Vue.extend({
     fetchData () {
       API.getEntries(this.$route.query)
         .then(data => {
-          this.record = data.entries.filter(
-            (record: Record) => record.API === this.$route.query.title
-          )[0]
-          this.fetchRelevantRecords(this.record.Category, this.record.API)
+          this.record = data.amiibo
+          // this.fetchRelevantRecords(this.record.Category, this.record.API)
         })
         .catch(function (err) {
           console.log('Fetch error', err)
         })
-    },
+    }
     /**
     * Gets relevant items.
     *
@@ -80,7 +78,7 @@ export default Vue.extend({
     * @param title - The title of the item that have to be ignored string
     *
     */
-    fetchRelevantRecords (category: string, title: string) {
+    /* fetchRelevantRecords (category: string, title: string) {
       let params = { category: category }
       API.getEntries(params)
         .then(data => {
@@ -91,7 +89,7 @@ export default Vue.extend({
         .catch(function (err) {
           console.log('Fetch error', err)
         })
-    }
+    } */
   }
 })
 </script>

@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <header>
-      <button @click="$router.push('/')">
-        Home
-      </button>
-      <button @click="$router.push('/categories')">
-        Categories
-      </button>
-      <button @click="$router.push('/random')">
-        Random
-      </button>
+      <div>
+        <button @click="$router.push('/')">
+          Home
+        </button>
+        <button @click="$router.push('/categories')">
+          Categories
+        </button>
+        <button @click="$router.push('/random')">
+          Random
+        </button>
+      </div>
     </header>
     <router-view/>
     <my-footer></my-footer>
@@ -44,6 +46,11 @@ header {
   top: 0px;
   left: 0px;
 }
+header div {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: auto;
+}
 
 #app {
   min-height: 100%;
@@ -56,5 +63,17 @@ header {
 }
 .page {
   margin-top: 72px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+button {
+  height: 56px;
+  background-color: #E65540;
+  color: #fff;
+  border-style: none;
+}
+button:hover {
+  background-color: #b82a14;
 }
 </style>

@@ -3,7 +3,7 @@
     <h1>Categories</h1>
     <ul>
       <li v-for="(category, index) in categories" :key="index">
-        <router-link :to="`/categories/${category}`">{{ category }}</router-link>
+        <router-link :to="`/categories/${category.name}`">{{ category.name }}</router-link>
       </li>
     </ul>
   </div>
@@ -24,7 +24,7 @@ export default Vue.extend({
     API.getcategories()
       .then(
         (data) => {
-          this.categories = data
+          this.categories = data.amiibo
         }
       )
       .catch(

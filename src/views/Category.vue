@@ -1,15 +1,15 @@
 <template>
   <div class="page">
-    <h1>Items in {{ $route.params.name }}</h1>
-    <ul>
+    <h1>Items in {{ $route.params.type }}</h1>
+     <ul>
       <li
       v-for="(record, index) in records"
       :key="index"
       @click="$router.push({
         path:'/details',
-        query: { title: record.API }
+        query: { id: record.head + record.tail}
         })"
-      >{{record.API}}</li>
+      >{{record.name}}</li>
     </ul>
   </div>
 </template>
@@ -27,12 +27,12 @@ export default Vue.extend({
   },
   created () {
     let params = {
-      category: this.$route.params.name
+      type: this.$route.params.type
     }
     API.getEntries(params)
       .then(
         (data) => {
-          this.records = data.entries.slice(0, 10)
+          this.records = data.amiibo
           console.log(data)
         }
       )
