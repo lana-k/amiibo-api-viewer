@@ -94,33 +94,40 @@ export default Vue.extend({
 
 <style>
 .pageItem {
-  display: inline;
-  padding: 6px 12px;
+  display: block;
   background-color: #f7f7f7;
   border: 1px solid red;
   border-left-width: 0px;
-  text-align: center;
-  position: relative;
-  float: left;
+  float:left;
+  box-sizing: border-box;
+}
+.pageItem > a {
+  padding: 6px 12px;
+  display: block;
+  cursor: pointer;
 }
 .prevButton {
-  display: inline;
-  padding: 6px 12px;
+  display: block;
   background-color: #f7f7f7;
   border: 1px solid red;
-  text-align: center;
-  position: relative;
-  float: left;
+  float:left;
+}
+.prevButton > a {
+  padding: 6px 12px;
+  display: block;
+  cursor: pointer;
 }
 .nextButton {
-  display: inline-block;
-  padding: 6px 12px;
+  display: block;
   background-color: #f7f7f7;
   border: 1px solid red;
   border-left-width: 0px;
-  text-align: center;
-  position: relative;
-  float: left;
+  float:left;
+}
+.nextButton > a {
+  padding: 6px 12px;
+  display: block;
+  cursor: pointer;
 }
 .pager{
   padding: 0px;
