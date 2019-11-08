@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    records: []
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    saveRecords (state, records: []) {
+      state.records = records
+    }
   }
 })

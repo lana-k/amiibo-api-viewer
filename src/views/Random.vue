@@ -1,16 +1,23 @@
 <template>
   <div class="page">
-    <h1>{{ record.API }}</h1>
-    <div v-if="record.Auth">Auth: {{ record.Auth }}</div>
-    <p>{{ record.Description }}</p>
-    <div>Category: {{ record.Category }}</div>
-    <a :href="record.Link">Link</a>
-    <button @click='fetchData'>Get another random item</button>
+    <div class="page-content">
+      <item
+        :amiiboSeries="record.amiiboSeries"
+        :character="record.character"
+        :gameSeries="record.gameSeries"
+        :image='record.image'
+        :release='record.release'
+        :type='record.type'
+        :name='record.name'>
+      </item>
+      <button @click='getRandom'>Get another random item</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Item from '@/components/Item.vue'
 import { API } from '../utils'
 
 export default Vue.extend({
@@ -29,7 +36,11 @@ export default Vue.extend({
     }
   },
   created () {
-    this.fetchData()
+    if (this.$store.state.records.length === 0) {
+      this.fetchData()
+    } else {
+      this.getRandom()
+    }
   },
   methods: {
     /**
@@ -39,14 +50,23 @@ export default Vue.extend({
     * Gets random item and save it in `record`.
     */
     fetchData () {
-      API.getRandom()
+      API.getEntries()
         .then(data => {
-          this.record = data.entries[0]
+          this.record = data.amiibo
+          this.$store.commit('saveRecords', data.amiibo)
+          this.getRandom()
         })
         .catch(function (err) {
           console.log('Fetch error', err)
         })
+    },
+    getRandom () {
+      let index: number = Math.floor(Math.random() * this.$store.state.records.length)
+      this.record = this.$store.state.records[index]
     }
+  },
+  components: {
+    Item
   }
 })
 </script>
@@ -58,8 +78,12 @@ button {
   color: #fff;
   border-style: none;
   border-radius: 5px;
+  margin: 16px;
 }
 button:hover {
   background-color: #b82a14;
+}
+.page-content {
+  text-align: center;
 }
 </style>

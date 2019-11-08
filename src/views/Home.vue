@@ -65,6 +65,7 @@ export default Vue.extend({
         (data) => {
           this.records = data.amiibo.slice(0, 10)
           this.sort(this.order)
+          this.$store.commit('saveRecords', data.amiibo)
         }
       )
       .catch(
