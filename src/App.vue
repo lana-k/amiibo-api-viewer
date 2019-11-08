@@ -48,8 +48,8 @@ header {
 }
 header div {
   display: inline-block;
-  margin-left: 10px;
   margin-right: auto;
+  margin-left: auto;
 }
 
 #app {
@@ -64,6 +64,7 @@ header div {
 .page {
   margin-top: 72px;
   max-width: 640px;
+  min-width: 320px;
   margin-left: auto;
   margin-right: auto;
 }

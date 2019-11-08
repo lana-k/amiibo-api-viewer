@@ -1,5 +1,5 @@
 <template>
-  <footer >
+  <footer>
     <ul>
       <li v-for="(category, index) in categories" :key="index">
         <router-link :to="`/categories/${category.name}`">{{ category.name }}</router-link>
