@@ -11,14 +11,16 @@
         :name='record.name'>
       </item>
       <h2>You may be interested in:</h2>
-      <record
-        v-for="(record, index) in otherRelevantRecords"
-        :key="index"
-        :id="record.head + record.tail"
-        :image="record.image"
-        :name="record.name"
+      <div class='list'>
+        <record
+          v-for="(record, index) in otherRelevantRecords"
+          :key="index"
+          :id="record.head + record.tail"
+          :image="record.image"
+          :name="record.name"
         ></record>
-     </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -112,3 +114,9 @@ export default Vue.extend({
   }
 })
 </script>
+<style scoped>
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+</style>

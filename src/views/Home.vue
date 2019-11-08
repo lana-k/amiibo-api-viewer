@@ -5,6 +5,7 @@
       <option value="asc">Sort by name ascending</option>
       <option value="desc">Sort by name descending</option>
     </select>
+    <br>
      <paginate
         :page-count="20"
         :click-handler="sort"
@@ -16,6 +17,7 @@
         next-class="nextButton"
         container-class='pager'>
       </paginate>
+      <div class='list'>
         <record
         v-for="(record, index) in records"
         :key="index"
@@ -24,6 +26,7 @@
         :name="record.name"
         >
       </record>
+      </div>
     </div>
   </div>
 </template>
@@ -101,7 +104,7 @@ export default Vue.extend({
 .pageItem {
   display: block;
   background-color: #f7f7f7;
-  border: 1px solid red;
+  border: 1px solid gray;
   border-left-width: 0px;
   float:left;
   box-sizing: border-box;
@@ -114,7 +117,7 @@ export default Vue.extend({
 .prevButton {
   display: block;
   background-color: #f7f7f7;
-  border: 1px solid red;
+  border: 1px solid gray;
   float:left;
 }
 .prevButton > a {
@@ -125,9 +128,8 @@ export default Vue.extend({
 .nextButton {
   display: inline-block;
   background-color: #f7f7f7;
-  border: 1px solid red;
+  border: 1px solid gray;
   border-left-width: 0px;
-  /* float:left; */
 }
 .nextButton > a {
   padding: 6px 12px;
@@ -136,7 +138,10 @@ export default Vue.extend({
 }
 .pager{
   padding: 0px;
-  margin: auto;
-  display: block;
+  display: inline-block;
+}
+select {
+  display: inline-block;
+  height: 48px;
 }
 </style>

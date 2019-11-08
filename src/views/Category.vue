@@ -1,14 +1,18 @@
 <template>
   <div class="page">
-    <h1>Items in {{ $route.params.type }}</h1>
-      <record
-      v-for="(record, index) in records"
-      :key="index"
-      :id="record.head + record.tail"
-      :image="record.image"
-      :name="record.name"
-      >
-    </record>
+    <div class="page-content">
+      <h1>Category: {{ $route.params.type }}</h1>
+       <div class='list'>
+         <record
+         v-for="(record, index) in records"
+         :key="index"
+         :id="record.head + record.tail"
+         :image="record.image"
+         :name="record.name"
+         >
+        </record>
+      </div>
+    </div>
   </div>
 </template>
 

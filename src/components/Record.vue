@@ -1,7 +1,7 @@
 <template>
   <div class='record' @click="$router.push({ path:'/details', query: { id: id} })">
     <img :src="image">
-    <h1>{{ name }}</h1>
+    <h2>{{ name }}</h2>
   </div>
 </template>
 
@@ -33,6 +33,6 @@ img {
 }
 .record {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-rows: auto auto ;
 }
 </style>

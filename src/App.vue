@@ -45,11 +45,10 @@ header {
   position:fixed;
   top: 0px;
   left: 0px;
+  text-align: center;
 }
 header div {
   display: inline-block;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 #app {
@@ -68,14 +67,21 @@ header div {
 }
 .page-content {
   grid-column-start: 2;
+  text-align: center;
 }
 button {
   height: 56px;
+  padding-left: 12px;
+  padding-right: 12px;
   background-color: #E65540;
   color: #fff;
   border-style: none;
 }
 button:hover {
   background-color: #b82a14;
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 </style>

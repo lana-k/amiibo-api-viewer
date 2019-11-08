@@ -1,5 +1,5 @@
 <template>
-  <div class='record' @click="$router.push({ path:'/details', query: { id: id} })">
+  <div class='record'>
     <img :src="image">
     <div class='info'>
       <h1>{{ name }}</h1>
@@ -30,6 +30,7 @@ export default Vue.extend({
 <style scoped>
 div {
   margin: 16px;
+  text-align: left;
 }
 img {
   height: auto;
