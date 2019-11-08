@@ -15,21 +15,20 @@
       next-class="nextButton"
       container-class='pager'>
     </paginate>
-    <ul>
-      <li
+      <record
       v-for="(record, index) in records"
       :key="index"
-      @click="$router.push({
-        path:'/details',
-        query: { id: record.head + record.tail}
-        })"
-      >{{record.name}}</li>
-    </ul>
+      :id="record.head + record.tail"
+      :image="record.image"
+      :name="record.name"
+      >
+    </record>
   </div>
 </template>
 
 <script  lang="ts">
 import Vue from 'vue'
+import Record from '@/components/Record.vue'
 import { API } from '../utils'
 
 const Paginate = require('vuejs-paginate')
@@ -88,6 +87,9 @@ export default Vue.extend({
         })
       }
     }
+  },
+  components: {
+    Record
   }
 })
 </script>
@@ -118,11 +120,11 @@ export default Vue.extend({
   cursor: pointer;
 }
 .nextButton {
-  display: block;
+  display: inline-block;
   background-color: #f7f7f7;
   border: 1px solid red;
   border-left-width: 0px;
-  float:left;
+  /* float:left; */
 }
 .nextButton > a {
   padding: 6px 12px;
@@ -131,6 +133,11 @@ export default Vue.extend({
 }
 .pager{
   padding: 0px;
-  z-index: 2;
+  margin: auto;
+  display: block;
+  clear: both;
+}
+.record {
+  clear: both;
 }
 </style>

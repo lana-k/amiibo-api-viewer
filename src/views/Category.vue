@@ -1,21 +1,20 @@
 <template>
   <div class="page">
     <h1>Items in {{ $route.params.type }}</h1>
-     <ul>
-      <li
+      <record
       v-for="(record, index) in records"
       :key="index"
-      @click="$router.push({
-        path:'/details',
-        query: { id: record.head + record.tail}
-        })"
-      >{{record.name}}</li>
-    </ul>
+      :id="record.head + record.tail"
+      :image="record.image"
+      :name="record.name"
+      >
+    </record>
   </div>
 </template>
 
 <script  lang="ts">
 import Vue from 'vue'
+import Record from '@/components/Record.vue'
 import { API } from '../utils'
 
 export default Vue.extend({
@@ -41,6 +40,9 @@ export default Vue.extend({
           console.log('Fetch error', err)
         }
       )
+  },
+  components: {
+    Record
   }
 })
 </script>
