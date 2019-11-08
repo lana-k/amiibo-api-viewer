@@ -28,22 +28,30 @@ export default Vue.extend({
       records: null
     }
   },
+  watch: {
+    $route: 'fetchData'
+  },
   created () {
-    let params = {
-      type: this.$route.params.type
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      let params = {
+        type: this.$route.params.type
+      }
+      API.getEntries(params)
+        .then(
+          (data) => {
+            this.records = data.amiibo.slice(1, 10)
+            console.log(data)
+          }
+        )
+        .catch(
+          function (err) {
+            console.log('Fetch error', err)
+          }
+        )
     }
-    API.getEntries(params)
-      .then(
-        (data) => {
-          this.records = data.amiibo
-          console.log(data)
-        }
-      )
-      .catch(
-        function (err) {
-          console.log('Fetch error', err)
-        }
-      )
   },
   components: {
     Record
