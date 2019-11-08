@@ -1,20 +1,26 @@
 <template>
   <div class="page">
-    <h1>{{ record.name }}</h1>
-    <div>amiiboSeries: {{ record.amiiboSeries }}</div>
-    <div>character: {{ record.character }}</div>
-    <div>gameSeries: {{ record.gameSeries }}</div>
-    <div>amiiboSeries: {{ record.amiiboSeries }}</div>
-
-    You may be interested in:
-    <ul>
-      <li v-for="(record, index) in otherRelevantRecords" :key="index" @click="$router.push({path:'/details', query: { title: record.API } })">{{record.API}}</li>
-    </ul>
+     <div class="page-content">
+      <item
+        :amiiboSeries="record.amiiboSeries"
+        :character="record.character"
+        :gameSeries="record.gameSeries"
+        :image='record.image'
+        :release='record.release'
+        :type='record.type'
+        :name='record.name'>
+      </item>
+      You may be interested in:
+      <ul>
+        <li v-for="(record, index) in otherRelevantRecords" :key="index" @click="$router.push({path:'/details', query: { title: record.API } })">{{record.API}}</li>
+      </ul>
+     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Item from '@/components/Item.vue'
 import { API } from '../utils'
 
 interface Record {
@@ -90,6 +96,9 @@ export default Vue.extend({
           console.log('Fetch error', err)
         })
     } */
+  },
+  components: {
+    Item
   }
 })
 </script>
