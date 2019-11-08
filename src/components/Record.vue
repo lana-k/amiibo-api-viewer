@@ -27,12 +27,11 @@ img {
   padding: 16px;
   box-sizing: border-box;
 }
-.h1 {
-  padding-left: 8px;
-
+h2 {
+  padding: 0px 16px;
 }
 .record {
   display: grid;
-  grid-template-rows: auto auto ;
+  grid-template-rows: 1fr auto;
 }
 </style>

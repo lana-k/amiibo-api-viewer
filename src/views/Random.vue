@@ -78,7 +78,7 @@ button {
   color: #fff;
   border-style: none;
   border-radius: 5px;
-  margin: 16px;
+  margin: 0px 32px 32px 32px;
 }
 button:hover {
   background-color: #b82a14;

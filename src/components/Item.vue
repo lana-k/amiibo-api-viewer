@@ -39,7 +39,7 @@ img {
   box-sizing: border-box;
 }
 .info {
-  padding-left: 8px;
+  padding-left: 16px;
   border: 1px solid gray;
 }
 .record {
