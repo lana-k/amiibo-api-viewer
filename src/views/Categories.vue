@@ -37,3 +37,14 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+ul {
+  padding: 0px;
+  list-style: none;
+}
+li {
+  margin: 8px;
+  font-size: 20px;
+}
+</style>
