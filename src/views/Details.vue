@@ -10,10 +10,14 @@
         :type='record.type'
         :name='record.name'>
       </item>
-      You may be interested in:
-      <ul>
-        <li v-for="(record, index) in otherRelevantRecords" :key="index" @click="$router.push({path:'/details', query: { title: record.API } })">{{record.API}}</li>
-      </ul>
+      <h2>You may be interested in:</h2>
+      <record
+        v-for="(record, index) in otherRelevantRecords"
+        :key="index"
+        :id="record.head + record.tail"
+        :image="record.image"
+        :name="record.name"
+        ></record>
      </div>
   </div>
 </template>
@@ -21,6 +25,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Item from '@/components/Item.vue'
+import Record from '@/components/Record.vue'
 import { API } from '../utils'
 
 interface Record {
@@ -31,6 +36,8 @@ interface Record {
       name: string;
       release: object;
       type: string;
+      head: string;
+      tail: string;
     }
 
 export default Vue.extend({
@@ -44,7 +51,9 @@ export default Vue.extend({
         image: true,
         name: '',
         release: '',
-        type: ''
+        type: '',
+        head: '',
+        tail: ''
       },
       otherRelevantRecords: []
     }
@@ -67,12 +76,12 @@ export default Vue.extend({
       API.getEntries(this.$route.query)
         .then(data => {
           this.record = data.amiibo
-          // this.fetchRelevantRecords(this.record.Category, this.record.API)
+          this.fetchRelevantRecords(this.record.type, this.record.gameSeries, this.record.head + this.record.tail)
         })
         .catch(function (err) {
           console.log('Fetch error', err)
         })
-    }
+    },
     /**
     * Gets relevant items.
     *
@@ -84,21 +93,22 @@ export default Vue.extend({
     * @param title - The title of the item that have to be ignored string
     *
     */
-    /* fetchRelevantRecords (category: string, title: string) {
-      let params = { category: category }
+    fetchRelevantRecords (category: string, gameSeries:string, id: string) {
+      let params = { type: category, gameSeries: gameSeries }
       API.getEntries(params)
         .then(data => {
-          this.otherRelevantRecords = data.entries.filter(
-            (record: Record) => record.API !== title
+          this.otherRelevantRecords = data.amiibo.filter(
+            (record: Record) => id !== record.head + record.tail
           ).slice(0, 3)
         })
         .catch(function (err) {
           console.log('Fetch error', err)
         })
-    } */
+    }
   },
   components: {
-    Item
+    Item,
+    Record
   }
 })
 </script>
