@@ -63,10 +63,11 @@ header div {
 }
 .page {
   margin-top: 72px;
-  max-width: 640px;
-  min-width: 320px;
-  margin-left: auto;
-  margin-right: auto;
+  display: grid;
+  grid-template-columns: auto minmax(320px, 640px) auto;
+}
+.page-content {
+  grid-column-start: 2;
 }
 button {
   height: 56px;

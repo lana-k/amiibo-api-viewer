@@ -1,28 +1,30 @@
 <template>
   <div class="page">
-  <select v-model="order">
-    <option value="asc">Sort by name ascending</option>
-    <option value="desc">Sort by name descending</option>
-  </select>
-   <paginate
-      :page-count="20"
-      :click-handler="sort"
-      :prev-text="'Prev'"
-      :next-text="'Next'"
-      :page-range="1"
-      page-class="pageItem"
-      prev-class="prevButton"
-      next-class="nextButton"
-      container-class='pager'>
-    </paginate>
-      <record
-      v-for="(record, index) in records"
-      :key="index"
-      :id="record.head + record.tail"
-      :image="record.image"
-      :name="record.name"
-      >
-    </record>
+    <div class="page-content">
+    <select v-model="order">
+      <option value="asc">Sort by name ascending</option>
+      <option value="desc">Sort by name descending</option>
+    </select>
+     <paginate
+        :page-count="20"
+        :click-handler="sort"
+        :prev-text="'Prev'"
+        :next-text="'Next'"
+        :page-range="1"
+        page-class="pageItem"
+        prev-class="prevButton"
+        next-class="nextButton"
+        container-class='pager'>
+      </paginate>
+        <record
+        v-for="(record, index) in records"
+        :key="index"
+        :id="record.head + record.tail"
+        :image="record.image"
+        :name="record.name"
+        >
+      </record>
+    </div>
   </div>
 </template>
 
@@ -135,9 +137,5 @@ export default Vue.extend({
   padding: 0px;
   margin: auto;
   display: block;
-  clear: both;
-}
-.record {
-  clear: both;
 }
 </style>

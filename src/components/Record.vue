@@ -11,24 +11,6 @@ import { API } from '../utils'
 
 export default Vue.extend({
   name: 'Record',
-  data () {
-    return {
-      categories: []
-    }
-  },
-  created () {
-    API.getcategories()
-      .then(
-        (data) => {
-          this.categories = data.amiibo
-        }
-      )
-      .catch(
-        function (err) {
-          console.log('Fetch error', err)
-        }
-      )
-  },
   props: [ 'id', 'image', 'name' ]
 })
 </script>
@@ -42,13 +24,15 @@ div {
 img {
   height: auto;
   width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
 }
 .h1 {
   padding-left: 8px;
+
 }
 .record {
   display: grid;
-  grid-template-columns: minmax(220px,160px) minmax(220px,480px);
-  grid-template-rows: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
 </style>

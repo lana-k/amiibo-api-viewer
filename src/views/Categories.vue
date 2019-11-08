@@ -1,11 +1,13 @@
 <template>
   <div class="page">
-    <h1>Categories</h1>
-    <ul>
-      <li v-for="(category, index) in categories" :key="index">
-        <router-link :to="`/categories/${category.name}`">{{ category.name }}</router-link>
-      </li>
-    </ul>
+    <div class="page-content">
+      <h1>Categories</h1>
+      <ul>
+        <li v-for="(category, index) in categories" :key="index">
+          <router-link :to="`/categories/${category.name}`">{{ category.name }}</router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
