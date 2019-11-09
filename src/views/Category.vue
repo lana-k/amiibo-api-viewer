@@ -2,6 +2,7 @@
   <div class="page">
     <div class="page-content">
       <h1>Category: {{ $route.params.type }}</h1>
+      <span v-if="loading">Loading items...</span>
        <div class='list'>
          <record
          v-for="(record, index) in records"
@@ -25,7 +26,8 @@ export default Vue.extend({
   name: 'Home',
   data () {
     return {
-      records: null
+      records: null,
+      loading: false
     }
   },
   watch: {
@@ -36,14 +38,15 @@ export default Vue.extend({
   },
   methods: {
     fetchData () {
-      let params = {
+      let params: object = {
         type: this.$route.params.type
       }
+      this.loading = true
       API.getEntries(params)
         .then(
           (data) => {
             this.records = data.amiibo.slice(1, 10)
-            console.log(data)
+            this.loading = false
           }
         )
         .catch(

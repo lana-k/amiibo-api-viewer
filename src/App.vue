@@ -84,6 +84,10 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
+.loading {
+  display: inline-block;
+  margin: 16px;
+}
 @media (min-height: 800px) and (min-width: 800px){
   header {
     height: 112px;

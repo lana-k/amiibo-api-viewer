@@ -1,25 +1,27 @@
 <template>
   <div class="page">
      <div class="page-content">
-      <item
-        :amiiboSeries="record.amiiboSeries"
-        :character="record.character"
-        :gameSeries="record.gameSeries"
-        :image='record.image'
-        :release='record.release'
-        :type='record.type'
-        :name='record.name'>
-      </item>
-      <h2>You may be interested in:</h2>
-      <div class='list'>
-        <record
-          v-for="(record, index) in otherRelevantRecords"
-          :key="index"
-          :id="record.head + record.tail"
-          :image="record.image"
-          :name="record.name"
-        ></record>
-      </div>
+       <span class="loading" v-if="loadingDetails">Loading details...</span>
+       <item
+         :amiiboSeries="record.amiiboSeries"
+         :character="record.character"
+         :gameSeries="record.gameSeries"
+         :image='record.image'
+         :release='record.release'
+         :type='record.type'
+         :name='record.name'>
+       </item>
+       <h2>You may be interested in:</h2>
+       <span class="loading" v-if="loadingRelevant">Loading items...</span>
+       <div class='list'>
+         <record
+           v-for="(record, index) in otherRelevantRecords"
+           :key="index"
+           :id="record.head + record.tail"
+           :image="record.image"
+           :name="record.name"
+         ></record>
+       </div>
     </div>
   </div>
 </template>
@@ -57,7 +59,9 @@ export default Vue.extend({
         head: '',
         tail: ''
       },
-      otherRelevantRecords: []
+      otherRelevantRecords: [],
+      loadingDetails: false,
+      loadingRelevant: false
     }
   },
   created () {
@@ -75,9 +79,11 @@ export default Vue.extend({
     * Then gets 3 items from the same category by calling `fetchRelevantRecords` method.
     */
     fetchData () {
+      this.loadingDetails = true
       API.getEntries(this.$route.query)
         .then(data => {
           this.record = data.amiibo
+          this.loadingDetails = false
           this.fetchRelevantRecords(this.record.type, this.record.gameSeries, this.record.head + this.record.tail)
         })
         .catch(function (err) {
@@ -97,11 +103,13 @@ export default Vue.extend({
     */
     fetchRelevantRecords (category: string, gameSeries:string, id: string) {
       let params = { type: category, gameSeries: gameSeries }
+      this.loadingRelevant = true
       API.getEntries(params)
         .then(data => {
           this.otherRelevantRecords = data.amiibo.filter(
             (record: Record) => id !== record.head + record.tail
           ).slice(0, 3)
+          this.loadingRelevant = false
         })
         .catch(function (err) {
           console.log('Fetch error', err)

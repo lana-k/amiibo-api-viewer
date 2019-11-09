@@ -5,6 +5,8 @@
         <option value="asc">Sort by name ascending</option>
         <option value="desc">Sort by name descending</option>
       </select>
+      <br>
+      <span class="loading" v-if="loading">Loading items...</span>
       <div class='list'>
         <record
           v-for="(record, index) in records"
@@ -39,7 +41,8 @@ export default Vue.extend({
   data () {
     return {
       records: [],
-      order: 'asc'
+      order: 'asc',
+      loading: false
     }
   },
   watch: {
@@ -48,11 +51,13 @@ export default Vue.extend({
     }
   },
   created () {
+    this.loading = true
     API.getEntries()
       .then(
         (data) => {
           this.records = data.amiibo.slice(0, 10)
           this.sort(this.order)
+          this.loading = false
           this.$store.commit('saveRecords', data.amiibo)
         }
       )
@@ -85,7 +90,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
 select {
   display: inline-block;
   height: 48px;

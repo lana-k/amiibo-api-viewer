@@ -2,6 +2,7 @@
   <div class="page">
     <div class="page-content">
       <h1>Categories</h1>
+      <span class="loading" v-if="loading">Loading categories...</span>
       <ul>
         <li v-for="(category, index) in categories" :key="index">
           <router-link :to="`/categories/${category.name}`">{{ category.name }}</router-link>
@@ -19,14 +20,17 @@ export default Vue.extend({
   name: 'Categories',
   data () {
     return {
-      categories: []
+      categories: [],
+      loading: false
     }
   },
   created () {
+    this.loading = true
     API.getcategories()
       .then(
         (data) => {
           this.categories = data.amiibo
+          this.loading = false
         }
       )
       .catch(

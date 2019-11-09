@@ -1,6 +1,8 @@
 <template>
   <div class="page">
     <div class="page-content">
+      <span class="loading" v-if="loading">Loading random item...</span>
+      <br>
       <item
         :amiiboSeries="record.amiiboSeries"
         :character="record.character"
@@ -32,7 +34,8 @@ export default Vue.extend({
         Cors: '',
         Link: '',
         Category: ''
-      }
+      },
+      loading: false
     }
   },
   created () {
@@ -50,9 +53,11 @@ export default Vue.extend({
     * Gets random item and save it in `record`.
     */
     fetchData () {
+      this.loading = true
       API.getEntries()
         .then(data => {
           this.record = data.amiibo
+          this.loading = false
           this.$store.commit('saveRecords', data.amiibo)
           this.getRandom()
         })
