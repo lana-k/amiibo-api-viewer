@@ -94,5 +94,11 @@ export default Vue.extend({
 select {
   display: inline-block;
   height: 48px;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: white;
+}
+select:focus {
+  outline-width: 0px;
 }
 </style>
