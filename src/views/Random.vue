@@ -68,6 +68,7 @@ export default Vue.extend({
     getRandom () {
       let index: number = Math.floor(Math.random() * this.$store.state.records.length)
       this.record = this.$store.state.records[index]
+      window.scrollTo(0, 0)
     }
   },
   components: {

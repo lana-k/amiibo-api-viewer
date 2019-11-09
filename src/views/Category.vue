@@ -26,7 +26,7 @@ export default Vue.extend({
   name: 'Home',
   data () {
     return {
-      records: null,
+      records: [],
       loading: false
     }
   },
@@ -38,6 +38,7 @@ export default Vue.extend({
   },
   methods: {
     fetchData () {
+      this.records = []
       let params: object = {
         type: this.$route.params.type
       }
