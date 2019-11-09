@@ -1,31 +1,19 @@
 <template>
   <div class="page">
     <div class="page-content">
-    <select v-model="order">
-      <option value="asc">Sort by name ascending</option>
-      <option value="desc">Sort by name descending</option>
-    </select>
-    <br>
-     <paginate
-        :page-count="20"
-        :click-handler="sort"
-        :prev-text="'Prev'"
-        :next-text="'Next'"
-        :page-range="1"
-        page-class="pageItem"
-        prev-class="prevButton"
-        next-class="nextButton"
-        container-class='pager'>
-      </paginate>
+      <select v-model="order">
+        <option value="asc">Sort by name ascending</option>
+        <option value="desc">Sort by name descending</option>
+      </select>
       <div class='list'>
         <record
-        v-for="(record, index) in records"
-        :key="index"
-        :id="record.head + record.tail"
-        :image="record.image"
-        :name="record.name"
-        >
-      </record>
+          v-for="(record, index) in records"
+          :key="index"
+          :id="record.head + record.tail"
+          :image="record.image"
+          :name="record.name"
+          >
+        </record>
       </div>
     </div>
   </div>
@@ -35,9 +23,6 @@
 import Vue from 'vue'
 import Record from '@/components/Record.vue'
 import { API } from '../utils'
-
-const Paginate = require('vuejs-paginate')
-Vue.component('paginate', Paginate)
 
 interface Record {
       amiiboSeries: string;
@@ -101,45 +86,6 @@ export default Vue.extend({
 </script>
 
 <style>
-.pageItem {
-  display: block;
-  background-color: #f7f7f7;
-  border: 1px solid gray;
-  border-left-width: 0px;
-  float:left;
-  box-sizing: border-box;
-}
-.pageItem > a {
-  padding: 6px 12px;
-  display: block;
-  cursor: pointer;
-}
-.prevButton {
-  display: block;
-  background-color: #f7f7f7;
-  border: 1px solid gray;
-  float:left;
-}
-.prevButton > a {
-  padding: 6px 12px;
-  display: block;
-  cursor: pointer;
-}
-.nextButton {
-  display: inline-block;
-  background-color: #f7f7f7;
-  border: 1px solid gray;
-  border-left-width: 0px;
-}
-.nextButton > a {
-  padding: 6px 12px;
-  display: block;
-  cursor: pointer;
-}
-.pager{
-  padding: 0px;
-  display: inline-block;
-}
 select {
   display: inline-block;
   height: 48px;

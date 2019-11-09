@@ -3,13 +3,13 @@
     <header>
       <div>
         <button @click="$router.push('/')">
-          Home
+          <h3>HOME</h3>
         </button>
         <button @click="$router.push('/categories')">
-          Categories
+          <h3>CATEGORIES</h3>
         </button>
         <button @click="$router.push('/random')">
-          Random
+          <h3>RANDOM</h3>
         </button>
       </div>
     </header>
@@ -83,5 +83,14 @@ button:hover {
 .list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+@media (min-height: 800px) and (min-width: 800px){
+  header {
+    height: 112px;
+    line-height: 112px;
+  }
+  .page {
+    margin-top: 128px;
+  }
 }
 </style>
