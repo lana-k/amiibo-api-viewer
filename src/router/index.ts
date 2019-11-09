@@ -16,18 +16,22 @@ const routes = [
   },
   {
     path: '/categories',
+    name: 'categories',
     component: Categories
   },
   {
     path: '/random',
+    name: 'random',
     component: Random
   },
   {
     path: '/details',
+    name: 'details',
     component: Details
   },
   {
     path: '/categories/:type',
+    name: 'category',
     component: Category
   }
 ]

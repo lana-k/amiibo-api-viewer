@@ -61,6 +61,7 @@ footer {
   grid-column-start: 2;
   display: grid;
   grid-template-columns: auto auto auto;
+  justify-items: center;
 }
 .footer-column {
   padding: 8px;
@@ -76,5 +77,12 @@ ul {
 li {
   margin: 8px;
 }
-
+h3 {
+  font-size: 16px;
+}
+@media (max-width: 340px){
+  h3 {
+    font-size: 15px;
+  }
+}
 </style>

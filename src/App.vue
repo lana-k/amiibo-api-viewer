@@ -2,14 +2,14 @@
   <div id="app">
     <header>
       <div>
-        <button @click="$router.push('/')">
-          <h3>HOME</h3>
+        <button :class="isActive('home') ? 'active' : ''" @click="$router.push({ name: 'home' })">
+          HOME
         </button>
-        <button @click="$router.push('/categories')">
-          <h3>CATEGORIES</h3>
+        <button :class="isActive('categories') ? 'active' : ''" @click="$router.push({ name: 'categories' })">
+          CATEGORIES
         </button>
-        <button @click="$router.push('/random')">
-          <h3>RANDOM</h3>
+        <button :class="isActive('random') ? 'active' : ''" @click="$router.push({ name: 'random' })">
+          RANDOM
         </button>
       </div>
     </header>
@@ -22,17 +22,23 @@
 import Vue from 'vue'
 import MyFooter from '@/components/MyFooter.vue'
 
-export default {
+export default Vue.extend({
   name: 'App',
+  methods: {
+    isActive (path: string): boolean {
+      return (this.$route.name === path)
+    }
+  },
   components: {
     MyFooter
   }
-}
+})
 </script>
 
 <style>
 html {
   height: 100%;
+  overflow-y: scroll;
 }
 body {
   margin: 0px;
@@ -40,6 +46,7 @@ body {
 }
 header {
   height: 56px;
+  line-height: 56px;
   width: 100%;
   background-color: #E65540;
   position:fixed;
@@ -70,15 +77,26 @@ header div {
   text-align: center;
 }
 button {
-  height: 56px;
+  height: 32px;
   padding-left: 12px;
   padding-right: 12px;
   background-color: #E65540;
   color: #fff;
+  font-size: 16px;
+  font-weight: bold;
   border-style: none;
+  margin-left: 8px;
 }
-button:hover {
-  background-color: #b82a14;
+button:first-of-type {
+  margin-left: 0px;
+}
+button:focus {
+  outline-width: 0px;
+}
+.active, button:hover {
+  background-color: #fff;
+  border-radius: 5px;
+  color: #b82a14;
 }
 .list {
   display: grid;
@@ -95,6 +113,11 @@ button:hover {
   }
   .page {
     margin-top: 128px;
+  }
+}
+@media (max-width: 340px){
+  button {
+    font-size: 15px;
   }
 }
 </style>
