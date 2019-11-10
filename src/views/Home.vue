@@ -18,7 +18,7 @@
           >
         </record>
       </div>
-        <paginator v-show="!loading" :pageAmount="pageAmount" v-model="currentPage"></paginator>
+      <paginator v-show="!loading" :pageAmount="pageAmount" v-model="currentPage"></paginator>
     </div>
   </div>
 </template>

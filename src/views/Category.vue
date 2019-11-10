@@ -2,6 +2,7 @@
   <div class="page">
     <div class="page-content">
       <h1>Category: {{ $route.params.type }}</h1>
+      <paginator v-if="pageAmount > 1" :pageAmount="pageAmount" v-model="currentPage"></paginator>
       <span v-if="loading">Loading items...</span>
        <div class='list'>
          <record
@@ -13,6 +14,7 @@
          >
         </record>
       </div>
+      <paginator v-if="pageAmount > 1" v-show="!loading" :pageAmount="pageAmount" v-model="currentPage"></paginator>
     </div>
   </div>
 </template>
@@ -20,6 +22,7 @@
 <script  lang="ts">
 import Vue from 'vue'
 import Record from '@/components/Record.vue'
+import Paginator from '@/components/Paginator.vue'
 import { API } from '../service'
 
 /**
@@ -33,10 +36,22 @@ export default Vue.extend({
   data () {
     return {
       records: [],
-      loading: false
+      loading: false,
+      currentPage: 1,
+      pageAmount: 0
     }
   },
   watch: {
+    currentPage: function () {
+      if (this.$route.query.page !== this.currentPage.toString()) {
+        this.$router.push({
+          name: 'category',
+          query: {
+            page: this.currentPage.toString()
+          }
+        })
+      }
+    },
     $route: 'fetchData'
   },
   created () {
@@ -45,6 +60,7 @@ export default Vue.extend({
   methods: {
     fetchData () {
       this.records = []
+      this.currentPage = Number(this.$route.query.page || 1)
       let params: object = {
         type: this.$route.params.type
       }
@@ -52,7 +68,10 @@ export default Vue.extend({
       API.getEntries(params)
         .then(
           (data) => {
-            this.records = data.amiibo.slice(1, 10)
+            this.pageAmount = Math.floor(data.amiibo.length / 10) + (data.amiibo.length % 10 === 0 ? 0 : 1)
+            let start: number = (this.currentPage - 1) * 10
+            let end: number = (this.currentPage - 1) * 10 + 10
+            this.records = data.amiibo.slice(start, end)
             this.loading = false
           }
         )
@@ -64,7 +83,8 @@ export default Vue.extend({
     }
   },
   components: {
-    Record
+    Record,
+    Paginator
   }
 })
 </script>
