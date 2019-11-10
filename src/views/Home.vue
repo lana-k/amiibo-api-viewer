@@ -5,8 +5,9 @@
         <option value="asc">Sort by name ascending</option>
         <option value="desc">Sort by name descending</option>
       </select>
+      <paginator :pageAmount="pageAmount" v-model="currentPage"></paginator>
       <br>
-      <span class="loading" v-if="loading">Loading items...</span>
+      <span class="loading" v-show="loading">Loading items...</span>
       <div class='list'>
         <record
           v-for="(record, index) in records"
@@ -17,6 +18,7 @@
           >
         </record>
       </div>
+        <paginator v-show="!loading" :pageAmount="pageAmount" v-model="currentPage"></paginator>
     </div>
   </div>
 </template>
@@ -24,6 +26,7 @@
 <script  lang="ts">
 import Vue from 'vue'
 import Record from '@/components/Record.vue'
+import Paginator from '@/components/Paginator.vue'
 import { API } from '../service'
 
 interface Record {
@@ -48,50 +51,77 @@ export default Vue.extend({
     return {
       records: [],
       order: 'asc',
-      loading: false
+      loading: false,
+      currentPage: 1,
+      pageAmount: 0
     }
   },
   watch: {
     order: function () {
-      this.sort(this.order)
-    }
+      this.$router.push({ name: 'home', query: { order: this.order, page: '1' } })
+    },
+    currentPage: function () {
+      if (this.$route.query.page !== this.currentPage.toString()) {
+        this.$router.push({
+          name: 'home',
+          query: {
+            order: this.order,
+            page: this.currentPage.toString()
+          }
+        })
+      }
+    },
+    $route: 'fetchRecords'
   },
   created () {
-    this.loading = true
-    API.getEntries()
-      .then(
-        (data) => {
-          this.records = data.amiibo.slice(0, 10)
-          this.sort(this.order)
-          this.loading = false
-          this.$store.commit('saveRecords', data.amiibo)
-        }
-      )
-      .catch(
-        function (err) {
-          console.log('Fetch error', err)
-        }
-      )
+    this.fetchRecords()
   },
   methods: {
-    sort (order: string) {
+    fetchRecords () {
+      this.records = []
+      this.order = String(this.$route.query.order || 'asc')
+      this.currentPage = Number(this.$route.query.page || 1)
+      this.loading = true
+      API.getEntries()
+        .then(
+          (data) => {
+            this.pageAmount = Math.floor(data.amiibo.length / 10) + (data.amiibo.length % 10 === 0 ? 0 : 1)
+            this.$store.commit('saveRecords', data.amiibo)
+            this.update(this.order, this.currentPage)
+            this.loading = false
+          }
+        )
+        .catch(
+          function (err) {
+            console.log('Fetch error', err)
+          }
+        )
+    },
+    sort (order: string): [] {
+      let temp: [] = this.$store.state.records.slice()
       if (order === 'asc') {
-        this.records.sort((a: Record, b: Record): number => {
+        return temp.sort((a: Record, b: Record): number => {
           if (a.name > b.name) return 1
           else if (a.name === b.name) return 0
           else return -1
         })
       } else {
-        this.records.sort((a: Record, b: Record): number => {
+        return temp.sort((a: Record, b: Record): number => {
           if (a.name < b.name) return 1
           else if (a.name === b.name) return 0
           else return -1
         })
       }
+    },
+    update (order: string, page: number) {
+      let start: number = (this.currentPage - 1) * 10
+      let end: number = (this.currentPage - 1) * 10 + 10
+      this.records = this.sort(order).slice(start, end)
     }
   },
   components: {
-    Record
+    Record,
+    Paginator
   }
 })
 </script>
