@@ -1,22 +1,25 @@
 <template>
+<div>
+  <h1>{{ name }}</h1>
   <div class='record'>
     <img :src="image">
     <div class='info'>
-      <h1>{{ name }}</h1>
-      <div class='label'>Character:</div>
+      <h3>Details:</h3>
+      <div class='label'>Character</div>
       <div class='value'>{{ character }}</div>
-      <div class='label'>GameSeries:</div>
+      <div class='label'>GameSeries</div>
       <div class='value'>{{ gameSeries }}</div>
-      <div class='label'>AmiiboSeries:</div>
+      <div class='label'>AmiiboSeries</div>
       <div class='value'>{{ amiiboSeries }}</div>
-      <div class='label'>Category:</div>
+      <div class='label'>Category</div>
       <div class='value'> {{ type }}</div>
       <h3>Releases:</h3>
-      <div><span class='label'>Australia:</span> {{ release.au }}</div>
-      <div><span class='label'>Europe:</span> {{ release.eu }}</div>
-      <div><span class='label'>Japan:</span> {{ release.jp }}</div>
-      <div><span class='label'>North America:</span> {{ release.na }}</div>
+      <div v-if="release.au" class='release'><span class='label'>Australia:</span> {{ release.au | date }}</div>
+      <div v-if="release.eu" class='release'><span class='label '>Europe:</span> {{ release.eu | date }}</div>
+      <div v-if="release.jp" class='release'><span class='label'>Japan:</span> {{ release.jp | date }}</div>
+      <div v-if="release.na" class='release'><span class='label'>North America:</span> {{ release.na | date }}</div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -36,7 +39,7 @@ export default Vue.extend({
 <style scoped>
 div {
   margin: 16px;
-  text-align: left;
+  text-align: center;
 }
 img {
   max-height: 50vh;
@@ -45,9 +48,10 @@ img {
   box-sizing: border-box;
 }
 .info {
-  padding-left: 16px;
+  padding: 16px;
   border: 1px solid gray;
   margin: 16px 0px;
+  text-align: left;
 }
 .record {
   display: grid;
@@ -57,10 +61,22 @@ img {
 .label {
   color: gray;
   font-size: 16px;
-  margin: 16px 8px 4px 8px;
+  margin: 16px 0px 4px 8px;
+  text-align: left;
 }
 .value {
   margin: 0 8px;
   font-size: 20px;
+  text-align: left;
+}
+div.release {
+  margin: 8px 0px;
+  text-align: left;
+}
+h3 {
+  margin: 24px 0px 16px 0px;
+}
+h3:first-of-type {
+  margin-top: 8px;
 }
 </style>
