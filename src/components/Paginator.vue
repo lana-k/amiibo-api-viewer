@@ -51,7 +51,7 @@ button {
   height: 32px;
   padding-left: 12px;
   padding-right: 12px;
-  margin: 0px;
+  margin: 0;
   background-color: #E65540;
   color: #fff;
   font-size: 16px;

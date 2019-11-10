@@ -136,6 +136,6 @@ select {
   cursor: pointer;
 }
 select:focus {
-  outline-width: 0px;
+  outline-width: 0;
 }
 </style>

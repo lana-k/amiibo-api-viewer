@@ -41,7 +41,7 @@ html {
   overflow-y: scroll;
 }
 body {
-  margin: 0px;
+  margin: 0;
   height: 100%;
 }
 header {
@@ -50,8 +50,8 @@ header {
   width: 100%;
   background-color: #E65540;
   position:fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   text-align: center;
 }
 header div {

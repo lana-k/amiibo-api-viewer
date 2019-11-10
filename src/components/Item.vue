@@ -52,7 +52,7 @@ img {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid gray;
-  margin: 16px 0px;
+  margin: 16px 0;
   text-align: left;
 }
 .record {
@@ -63,7 +63,7 @@ img {
 .label {
   color: gray;
   font-size: 16px;
-  margin: 16px 0px 4px 8px;
+  margin: 16px 0 4px 8px;
   text-align: left;
 }
 .value {
@@ -72,11 +72,11 @@ img {
   text-align: left;
 }
 div.release {
-  margin: 8px 0px;
+  margin: 8px 0;
   text-align: left;
 }
 h3 {
-  margin: 24px 0px 16px 0px;
+  margin: 24px 0 16px 0;
 }
 h3:first-of-type {
   margin-top: 8px;

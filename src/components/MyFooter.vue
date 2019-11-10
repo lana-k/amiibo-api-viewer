@@ -76,7 +76,7 @@ a {
   color: #fff;
 }
 ul {
-  padding: 0px;
+  padding: 0;
   list-style: none;
 }
 li {

@@ -92,7 +92,7 @@ button {
   color: #fff;
   border-style: none;
   border-radius: 5px;
-  margin: 0px 32px 32px 32px;
+  margin: 0 32px 32px 32px;
 }
 .page-content {
   text-align: center;
