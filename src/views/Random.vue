@@ -33,13 +33,15 @@ export default Vue.extend({
   data () {
     return {
       record: {
-        API: '',
-        Auth: '',
-        Description: '',
-        HTTPS: true,
-        Cors: '',
-        Link: '',
-        Category: ''
+        amiiboSeries: '',
+        character: '',
+        gameSeries: '',
+        image: true,
+        name: '',
+        release: {},
+        type: '',
+        head: '',
+        tail: ''
       },
       loading: false
     }
