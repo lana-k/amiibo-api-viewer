@@ -20,8 +20,14 @@
 <script  lang="ts">
 import Vue from 'vue'
 import Record from '@/components/Record.vue'
-import { API } from '../utils'
+import { API } from '../service'
 
+/**
+  * Category page.
+  *
+  * @remarks
+  * Shows 10 records of selected category.
+  */
 export default Vue.extend({
   name: 'Home',
   data () {

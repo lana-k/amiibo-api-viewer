@@ -3,10 +3,14 @@
     <img :src="image">
     <div class='info'>
       <h1>{{ name }}</h1>
-      <div><span class='label'>Character:</span> {{ character }}</div>
-      <div><span class='label'>GameSeries:</span> {{ gameSeries }}</div>
-      <div><span class='label'>AmiiboSeries:</span> {{ amiiboSeries }}</div>
-      <div><span class='label'>Category:</span> {{ type }}</div>
+      <div class='label'>Character:</div>
+      <div class='value'>{{ character }}</div>
+      <div class='label'>GameSeries:</div>
+      <div class='value'>{{ gameSeries }}</div>
+      <div class='label'>AmiiboSeries:</div>
+      <div class='value'>{{ amiiboSeries }}</div>
+      <div class='label'>Category:</div>
+      <div class='value'> {{ type }}</div>
       <h3>Releases:</h3>
       <div><span class='label'>Australia:</span> {{ release.au }}</div>
       <div><span class='label'>Europe:</span> {{ release.eu }}</div>
@@ -18,15 +22,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API } from '../utils'
+import { API } from '../service'
 
+/**
+  * Item with details.
+  */
 export default Vue.extend({
   name: 'Item',
   props: ['amiiboSeries', 'character', 'gameSeries', 'image', 'name', 'release', 'type']
 })
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 div {
   margin: 16px;
@@ -41,6 +47,7 @@ img {
 .info {
   padding-left: 16px;
   border: 1px solid gray;
+  margin: 16px 0px;
 }
 .record {
   display: grid;
@@ -49,5 +56,11 @@ img {
 }
 .label {
   color: gray;
+  font-size: 16px;
+  margin: 16px 8px 4px 8px;
+}
+.value {
+  margin: 0 8px;
+  font-size: 20px;
 }
 </style>

@@ -30,7 +30,7 @@
 import Vue from 'vue'
 import Item from '@/components/Item.vue'
 import Record from '@/components/Record.vue'
-import { API } from '../utils'
+import { API } from '../service'
 
 interface Record {
       amiiboSeries: string;
@@ -44,6 +44,12 @@ interface Record {
       tail: string;
     }
 
+/**
+  * Details page.
+  *
+  * @remarks
+  * Shows selected item and the list of 3 another relevant items.
+  */
 export default Vue.extend({
   name: 'Details',
   data () {
@@ -54,7 +60,7 @@ export default Vue.extend({
         gameSeries: '',
         image: true,
         name: '',
-        release: '',
+        release: {},
         type: '',
         head: '',
         tail: ''

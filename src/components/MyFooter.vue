@@ -21,8 +21,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API } from '../utils'
+import { API, getCachedCategories } from '../service'
 
+/**
+  * Footer.
+  *
+  * @remarks
+  * Shows a generated sitemap.
+  */
 export default Vue.extend({
   name: 'MyFooter',
   data () {
@@ -31,7 +37,7 @@ export default Vue.extend({
     }
   },
   created () {
-    API.getcategories()
+    getCachedCategories()
       .then(
         (data) => {
           this.categories = data.amiibo
@@ -46,7 +52,6 @@ export default Vue.extend({
 })
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 footer {

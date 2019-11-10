@@ -20,8 +20,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import Item from '@/components/Item.vue'
-import { API } from '../utils'
+import { API } from '../service'
 
+/**
+  * Random page.
+  *
+  * @remarks
+  * Shows details of a random item and provide an oportunity to get another random button.
+  */
 export default Vue.extend({
   name: 'Random',
   data () {

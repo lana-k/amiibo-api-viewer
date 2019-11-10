@@ -24,7 +24,7 @@
 <script  lang="ts">
 import Vue from 'vue'
 import Record from '@/components/Record.vue'
-import { API } from '../utils'
+import { API } from '../service'
 
 interface Record {
       amiiboSeries: string;
@@ -36,6 +36,12 @@ interface Record {
       type: string;
     }
 
+/**
+  * Home page.
+  *
+  * @remarks
+  * Shows 10 records and provide an oportunity to sort them by name.
+  */
 export default Vue.extend({
   name: 'Home',
   data () {

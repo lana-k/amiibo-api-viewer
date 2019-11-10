@@ -1,3 +1,5 @@
+import pMemoize from 'p-memoize'
+
 class API {
   static baseURL:string = 'https://www.amiiboapi.com/api/'
 
@@ -31,7 +33,7 @@ class API {
       })
   }
 
-  static getcategories () {
+  static getCategories () {
     var url = new URL(`${this.baseURL}type`)
     return fetch(url.toString())
       .then(function (response) {
@@ -46,4 +48,6 @@ class API {
   }
 }
 
-export { API }
+const getCachedCategories = pMemoize(API.getCategories.bind(API), { maxAge: 5 * 60 * 1000 })
+
+export { API, getCachedCategories }

@@ -7,8 +7,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API } from '../utils'
+import { API } from '../service'
 
+/**
+  * Record displayed in lists.
+  */
 export default Vue.extend({
   name: 'Record',
   props: [ 'id', 'image', 'name' ]

@@ -14,8 +14,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API } from '../utils'
+import { API, getCachedCategories } from '../service'
 
+/**
+  * Categories page.
+  *
+  * @remarks
+  * Shows a list of categories.
+  */
 export default Vue.extend({
   name: 'Categories',
   data () {
@@ -26,7 +32,7 @@ export default Vue.extend({
   },
   created () {
     this.loading = true
-    API.getcategories()
+    getCachedCategories()
       .then(
         (data) => {
           this.categories = data.amiibo
