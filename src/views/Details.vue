@@ -108,7 +108,7 @@ export default Vue.extend({
     *
     */
     fetchRelevantRecords (category: string, gameSeries:string, id: string) {
-      let params = { type: category, gameSeries: gameSeries }
+      let params = { type: category, gameseries: gameSeries }
       this.loadingRelevant = true
       API.getEntries(params)
         .then(data => {
