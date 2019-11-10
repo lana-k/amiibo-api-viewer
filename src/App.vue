@@ -94,7 +94,8 @@ button:first-of-type {
 button:focus {
   outline-width: 0px;
 }
-.active, button:hover {
+.active, 
+button:hover {
   background-color: #fff;
   border-radius: 5px;
   color: #b82a14;

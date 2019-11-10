@@ -18,7 +18,6 @@ export default Vue.extend({
 })
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 div {
   border: 1px solid gray;
