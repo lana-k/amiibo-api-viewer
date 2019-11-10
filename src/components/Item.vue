@@ -33,8 +33,8 @@ div {
   text-align: left;
 }
 img {
-  height: auto;
-  width: 100%;
+  max-height: 50vh;
+  max-width: 100%;
   padding: 16px;
   box-sizing: border-box;
 }
@@ -45,6 +45,7 @@ img {
 .record {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  justify-items: center;
 }
 .label {
   color: gray;

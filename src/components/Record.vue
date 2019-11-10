@@ -22,8 +22,8 @@ div {
   margin: 16px;
 }
 img {
-  height: auto;
-  width: 100%;
+  max-height: 50vh;
+  max-width: 100%;
   padding: 16px;
   box-sizing: border-box;
 }
@@ -33,5 +33,6 @@ h2 {
 .record {
   display: grid;
   grid-template-rows: 1fr auto;
+  justify-items: center;
 }
 </style>
