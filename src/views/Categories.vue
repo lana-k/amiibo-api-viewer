@@ -41,7 +41,7 @@ export default Vue.extend({
       )
       .catch(
         function (err) {
-          console.log('Fetch error', err)
+          console.error('Fetch error', err)
         }
       )
   }

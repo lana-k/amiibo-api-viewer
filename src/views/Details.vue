@@ -118,7 +118,7 @@ export default Vue.extend({
           this.loadingRelevant = false
         })
         .catch(function (err) {
-          console.log('Fetch error', err)
+          console.error('Fetch error', err)
         })
     }
   },
