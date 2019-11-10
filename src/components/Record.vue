@@ -23,6 +23,7 @@ export default Vue.extend({
 div {
   border: 1px solid gray;
   margin: 16px;
+  cursor: pointer;
 }
 img {
   max-height: 50vh;

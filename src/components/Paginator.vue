@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="goToPrev()" :disabled="isPrevDisabled">Prev</button>
-    <span>{{ currentPage }}</span>
+    <span>{{ currentPage }}/{{ pageAmount }}</span>
     <button @click="goToNext()" :disabled="isNextDisabled">Next</button>
   </div>
 </template>
@@ -63,6 +63,7 @@ button:disabled {
   background-color: white;
   border: 1px solid gray;
   color: gray;
+  cursor: default;
 }
 span {
   display: inline-block;

@@ -2,8 +2,8 @@
   <div class="page">
     <div class="page-content">
       <select v-model="order">
-        <option value="asc">Sort by name ascending</option>
-        <option value="desc">Sort by name descending</option>
+        <option value="asc">Sort by name: ascending</option>
+        <option value="desc">Sort by name: descending</option>
       </select>
       <paginator :pageAmount="pageAmount" v-model="currentPage"></paginator>
       <br>
@@ -133,6 +133,7 @@ select {
   border-radius: 5px;
   padding: 8px;
   background-color: white;
+  cursor: pointer;
 }
 select:focus {
   outline-width: 0px;

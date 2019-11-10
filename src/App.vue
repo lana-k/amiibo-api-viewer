@@ -86,6 +86,7 @@ button {
   font-weight: bold;
   border-style: none;
   margin-left: 8px;
+  cursor: pointer;
 }
 button:first-of-type {
   margin-left: 0px;

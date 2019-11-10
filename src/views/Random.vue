@@ -94,9 +94,6 @@ button {
   border-radius: 5px;
   margin: 0px 32px 32px 32px;
 }
-button:hover {
-  background-color: #b82a14;
-}
 .page-content {
   text-align: center;
 }
