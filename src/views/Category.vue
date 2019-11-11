@@ -32,7 +32,7 @@ import { Amiibo } from '../service'
  * Shows 10 records per page of selected category.
  */
 export default Vue.extend({
-  name: 'Home',
+  name: 'Category',
   data () {
     return {
       records: [],
