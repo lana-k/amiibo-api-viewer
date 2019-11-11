@@ -23,11 +23,11 @@ import Item from '@/components/Item.vue'
 import { Amiibo } from '../service'
 
 /**
-  * Random page.
-  *
-  * @remarks
-  * Shows details of a random item and provide an oportunity to get another random item.
-  */
+ * Random page.
+ *
+ * @remarks
+ * Shows details of a random item and provide an oportunity to get another random item.
+ */
 export default Vue.extend({
   name: 'Random',
   data () {
@@ -55,8 +55,8 @@ export default Vue.extend({
   },
   methods: {
     /**
-    * Gets random item from the Amiibo service.
-    */
+     * Gets random item from the Amiibo service.
+     */
     getRandomFromService () {
       this.loading = true
       Amiibo.getEntries()
@@ -71,8 +71,8 @@ export default Vue.extend({
         })
     },
     /**
-    * Gets random item from the store.
-    */
+     * Gets random item from the store.
+     */
     getRandom () {
       let index: number = Math.floor(Math.random() * this.$store.state.records.length)
       this.record = this.$store.state.records[index]

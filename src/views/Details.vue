@@ -45,11 +45,11 @@ interface Record {
     }
 
 /**
-  * Details page.
-  *
-  * @remarks
-  * Shows selected item and the list of 3 another relevant items.
-  */
+ * Details page.
+ *
+ * @remarks
+ * Shows selected item and the list of 3 another relevant items.
+ */
 export default Vue.extend({
   name: 'Details',
   data () {
@@ -78,12 +78,12 @@ export default Vue.extend({
   },
   methods: {
     /**
-    * Gets all data for the Details page.
-    *
-    * @remarks
-    * First, gets details about the selected item.
-    * Then gets 3 another items from the same category and game series.
-    */
+     * Gets all data for the Details page.
+     *
+     * @remarks
+     * First, gets details about the selected item.
+     * Then gets 3 another items from the same category and game series.
+     */
     fetchData () {
       this.loadingDetails = true
       Amiibo.getEntries(this.$route.query)
@@ -97,15 +97,15 @@ export default Vue.extend({
         })
     },
     /**
-    * Gets relevant items.
-    *
-    * @remarks
-    * Gets 3 items from the given category and game series that not include the item with given id
-    *
-    * @param category - The category of relevant items
-    * @param gameSeries - The game series of relevant items
-    * @param id - The id of the item that have to be ignored
-    */
+     * Gets relevant items.
+     *
+     * @remarks
+     * Gets 3 items from the given category and game series that not include the item with given id
+     *
+     * @param category - The category of relevant items
+     * @param gameSeries - The game series of relevant items
+     * @param id - The id of the item that have to be ignored
+     */
     fetchRelevantRecords (category: string, gameSeries:string, id: string) {
       let params = { type: category, gameseries: gameSeries }
       this.loadingRelevant = true

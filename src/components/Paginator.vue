@@ -10,8 +10,8 @@
 import Vue from 'vue'
 
 /**
-  * Paginator.
-  */
+ * Paginator.
+ */
 export default Vue.extend({
   name: 'Paginator',
   data () {
@@ -34,21 +34,21 @@ export default Vue.extend({
   },
   methods: {
     /**
-    * Gets called when the user clicks on the Prev button
-    *
-    * @remarks
-    * Decreases the number of the current page and emit `input` event
-    */
+     * Gets called when the user clicks on the Prev button
+     *
+     * @remarks
+     * Decreases the number of the current page and emit `input` event
+     */
     goToPrev () {
       this.currentPage--
       this.$emit('input', this.currentPage)
     },
     /**
-    * Gets called when the user clicks on the Next button
-    *
-    * @remarks
-    * Increases the number of the current page and emit `input` event
-    */
+     * Gets called when the user clicks on the Next button
+     *
+     * @remarks
+     * Increases the number of the current page and emit `input` event
+     */
     goToNext () {
       this.currentPage++
       this.$emit('input', this.currentPage)
@@ -56,12 +56,12 @@ export default Vue.extend({
   },
   props: [
     /**
-    * Total of pages
-    */
+     * Total of pages
+     */
     'pageAmount',
     /**
-    * Value of the component in the v-model
-    */
+     * Value of the component in the v-model
+     */
     'value']
 })
 </script>

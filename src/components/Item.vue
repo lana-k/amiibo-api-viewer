@@ -28,49 +28,49 @@ import Vue from 'vue'
 import { Amiibo } from '../service'
 
 /**
-  * Item with details.
-  */
+ * Item with details.
+ */
 export default Vue.extend({
   name: 'Item',
   props: [
     /**
-    * Name of Amiibo series of the item
-    */
+     * Name of Amiibo series of the item
+     */
     'amiiboSeries',
     /**
-    * Name of character of the item
-    */
+     * Name of character of the item
+     */
     'character',
     /**
-    * Name of game series of the item
-    */
+     * Name of game series of the item
+     */
     'gameSeries',
     /**
-    * Image of the item
-    */
+     * Image of the item
+     */
     'image',
     /**
-    * Name of the item
-    */
+     * Name of the item
+     */
     'name',
     /**
-    * Object representing release dates of the item in
-    * Australia (au), Europe (eu), Japan (jp) and North America (na)
-    *
-    * @example
-    * ```
-    * {
-    *   au: "2014-11-29",
-    *   eu: "2014-11-28",
-    *   jp: "2014-12-06",
-    *   na: "2014-11-21"
-    * }
-    * ```
-    */
+     * Object representing release dates of the item in
+     * Australia (au), Europe (eu), Japan (jp) and North America (na)
+     *
+     * @example
+     * ```
+     * {
+     *   au: "2014-11-29",
+     *   eu: "2014-11-28",
+     *   jp: "2014-12-06",
+     *   na: "2014-11-21"
+     * }
+     * ```
+     */
     'release',
     /**
-    * Type of the item
-    */
+     * Type of the item
+     */
     'type'
   ]
 })

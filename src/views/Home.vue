@@ -40,11 +40,11 @@ interface Record {
     }
 
 /**
-  * Home page.
-  *
-  * @remarks
-  * Shows 10 records per page and provide an oportunity to sort them by name.
-  */
+ * Home page.
+ *
+ * @remarks
+ * Shows 10 records per page and provide an oportunity to sort them by name.
+ */
 export default Vue.extend({
   name: 'Home',
   data () {
@@ -58,7 +58,9 @@ export default Vue.extend({
   },
   watch: {
     order: function () {
-      this.$router.push({ name: 'home', query: { order: this.order, page: '1' } })
+      if (this.$route.query.order !== this.order.toString()) {
+        this.$router.push({ name: 'home', query: { order: this.order, page: '1' } })
+      }
     },
     currentPage: function () {
       if (this.$route.query.page !== this.currentPage.toString()) {
@@ -78,11 +80,11 @@ export default Vue.extend({
   },
   methods: {
     /**
-    * Gets a list of items from Amiibo service.
-    *
-    * @remarks
-    * Gets a sorted list of items from Amiibo service and calculates the total of pages.
-    */
+     * Gets a list of items from Amiibo service.
+     *
+     * @remarks
+     * Gets a sorted list of items from Amiibo service and calculates the total of pages.
+     */
     fetchRecords () {
       this.records = []
       this.order = String(this.$route.query.order || 'asc')
@@ -104,33 +106,33 @@ export default Vue.extend({
         )
     },
     /**
-    * Sorts the list of items in the store.
-    *
-    * @param order - The name of the order `asc` (ascending) or `desc` (descending)
-    * @returns A sorted copy of the item list from the store.
-    */
+     * Sorts the list of items in the store.
+     *
+     * @param order - The name of the order `asc` (ascending) or `desc` (descending)
+     * @returns A sorted copy of the item list from the store.
+     */
     sort (order: string): [] {
       let temp: [] = this.$store.state.records.slice()
-      if (order === 'asc') {
+      if (order === 'desc') {
         return temp.sort((a: Record, b: Record): number => {
-          if (a.name > b.name) return 1
+          if (a.name < b.name) return 1
           else if (a.name === b.name) return 0
           else return -1
         })
       } else {
         return temp.sort((a: Record, b: Record): number => {
-          if (a.name < b.name) return 1
+          if (a.name > b.name) return 1
           else if (a.name === b.name) return 0
           else return -1
         })
       }
     },
     /**
-    * Gets a selected range of items from sorted list from the store.
-    *
-    * @param order - The name of the order `asc` (ascending) or `desc` (descending)
-    * @param page - The number of selected page
-    */
+     * Gets a selected range of items from sorted list from the store.
+     *
+     * @param order - The name of the order `asc` (ascending) or `desc` (descending)
+     * @param page - The number of selected page
+     */
     update (order: string, page: number) {
       let start: number = (this.currentPage - 1) * 10
       let end: number = (this.currentPage - 1) * 10 + 10

@@ -54,13 +54,13 @@ class Amiibo {
 }
 
 /**
-* Result of calls `Amiibo.getCategories` cached for 5 min
-*
-* @remarks
-* Uses {@link https://www.npmjs.com/package/p-memoize| p-memoize}.
-*
-* @public
-*/
+ * Result of calls `Amiibo.getCategories` cached for 5 min
+ *
+ * @remarks
+ * Uses {@link https://www.npmjs.com/package/p-memoize| p-memoize}.
+ *
+ * @public
+ */
 const getCachedCategories = pMemoize(Amiibo.getCategories.bind(Amiibo), { maxAge: 5 * 60 * 1000 })
 
 export { Amiibo, getCachedCategories }

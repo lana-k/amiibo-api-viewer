@@ -17,11 +17,11 @@ import Vue from 'vue'
 import { getCachedCategories } from '../service'
 
 /**
-  * Categories page.
-  *
-  * @remarks
-  * Shows a list of categories.
-  */
+ * Categories page.
+ *
+ * @remarks
+ * Shows a list of categories.
+ */
 export default Vue.extend({
   name: 'Categories',
   data () {

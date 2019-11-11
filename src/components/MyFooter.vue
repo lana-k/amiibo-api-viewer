@@ -24,11 +24,11 @@ import Vue from 'vue'
 import { Amiibo, getCachedCategories } from '../service'
 
 /**
-  * Footer.
-  *
-  * @remarks
-  * Shows a sitemap with categories provided by Amiibo servise.
-  */
+ * Footer.
+ *
+ * @remarks
+ * Shows a sitemap with categories provided by Amiibo servise.
+ */
 export default Vue.extend({
   name: 'MyFooter',
   data () {
@@ -56,7 +56,7 @@ export default Vue.extend({
 
 footer {
   background-color: #636363;
-  color: #fff;
+  color: white;
   display: grid;
   grid-template-columns: auto minmax(320px, 640px) auto ;
   grid-row-start: 2;
@@ -73,7 +73,7 @@ footer {
   box-sizing: border-box;
 }
 a {
-  color: #fff;
+  color: white;
 }
 ul {
   padding: 0;

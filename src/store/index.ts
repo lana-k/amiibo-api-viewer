@@ -9,10 +9,10 @@ export default new Vuex.Store({
   },
   mutations: {
     /**
-    * Save `records` to the store.
-    *
-    * @param records - The list of items to be saved
-    */
+     * Save `records` to the store.
+     *
+     * @param records - The list of items to be saved
+     */
     saveRecords (state, records: []) {
       state.records = records
     }
