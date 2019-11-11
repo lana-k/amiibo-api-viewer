@@ -36,6 +36,7 @@ h2 {
 .record {
   display: grid;
   grid-template-rows: 1fr auto;
+  align-items: center;
   justify-items: center;
 }
 </style>
