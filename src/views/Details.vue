@@ -93,7 +93,7 @@ export default Vue.extend({
           this.fetchRelevantRecords(this.record.type, this.record.gameSeries, this.record.head + this.record.tail)
         })
         .catch(function (err) {
-          console.log('Fetch error', err)
+          console.error('Fetch error', err)
         })
     },
     /**
