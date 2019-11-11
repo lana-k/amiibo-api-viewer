@@ -7,9 +7,9 @@
       <h3>Details:</h3>
       <div class='label'>Character</div>
       <div class='value'>{{ character }}</div>
-      <div class='label'>GameSeries</div>
+      <div class='label'>Game series</div>
       <div class='value'>{{ gameSeries }}</div>
-      <div class='label'>AmiiboSeries</div>
+      <div class='label'>Amiibo series</div>
       <div class='value'>{{ amiiboSeries }}</div>
       <div class='label'>Category</div>
       <div class='value'> {{ type }}</div>
@@ -25,14 +25,54 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API } from '../service'
+import { Amiibo } from '../service'
 
 /**
   * Item with details.
   */
 export default Vue.extend({
   name: 'Item',
-  props: ['amiiboSeries', 'character', 'gameSeries', 'image', 'name', 'release', 'type']
+  props: [
+    /**
+    * Name of Amiibo series of the item
+    */
+    'amiiboSeries',
+    /**
+    * Name of character of the item
+    */
+    'character',
+    /**
+    * Name of game series of the item
+    */
+    'gameSeries',
+    /**
+    * Image of the item
+    */
+    'image',
+    /**
+    * Name of the item
+    */
+    'name',
+    /**
+    * Object representing release dates of the item in
+    * Australia (au), Europe (eu), Japan (jp) and North America (na)
+    *
+    * @example
+    * ```
+    * {
+    *   au: "2014-11-29",
+    *   eu: "2014-11-28",
+    *   jp: "2014-12-06",
+    *   na: "2014-11-21"
+    * }
+    * ```
+    */
+    'release',
+    /**
+    * Type of the item
+    */
+    'type'
+  ]
 })
 </script>
 

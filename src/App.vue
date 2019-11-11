@@ -22,9 +22,24 @@
 import Vue from 'vue'
 import MyFooter from '@/components/MyFooter.vue'
 
+/**
+  * Page container.
+  *
+  * @remarks
+  * Shows the menu, the footer and the content of the current page.
+  */
 export default Vue.extend({
   name: 'App',
   methods: {
+  /**
+   * State of the path.
+   *
+   * @remarks
+   * Determines if the `path` is the name of the current route
+   *
+   * @param path - The name of the route to be checked
+   * @returns True if the `path` is the name of the current route
+   */
     isActive (path: string): boolean {
       return (this.$route.name === path)
     }
@@ -81,7 +96,7 @@ button {
   padding-left: 12px;
   padding-right: 12px;
   background-color: #E65540;
-  color: #fff;
+  color: white;
   font-size: 16px;
   font-weight: bold;
   border-style: none;
@@ -96,7 +111,7 @@ button:focus {
 }
 .active,
 button:hover {
-  background-color: #fff;
+  background-color: white;
   border-radius: 5px;
   color: #b82a14;
 }

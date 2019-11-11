@@ -8,6 +8,11 @@ export default new Vuex.Store({
     records: []
   },
   mutations: {
+    /**
+    * Save `records` to the store.
+    *
+    * @param records - The list of items to be saved
+    */
     saveRecords (state, records: []) {
       state.records = records
     }

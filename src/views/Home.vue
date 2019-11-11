@@ -27,7 +27,7 @@
 import Vue from 'vue'
 import Record from '@/components/Record.vue'
 import Paginator from '@/components/Paginator.vue'
-import { API } from '../service'
+import { Amiibo } from '../service'
 
 interface Record {
       amiiboSeries: string;
@@ -43,7 +43,7 @@ interface Record {
   * Home page.
   *
   * @remarks
-  * Shows 10 records and provide an oportunity to sort them by name.
+  * Shows 10 records per page and provide an oportunity to sort them by name.
   */
 export default Vue.extend({
   name: 'Home',
@@ -77,12 +77,18 @@ export default Vue.extend({
     this.fetchRecords()
   },
   methods: {
+    /**
+    * Gets a list of items from Amiibo service.
+    *
+    * @remarks
+    * Gets a sorted list of items from Amiibo service and calculates the total of pages.
+    */
     fetchRecords () {
       this.records = []
       this.order = String(this.$route.query.order || 'asc')
       this.currentPage = Number(this.$route.query.page || 1)
       this.loading = true
-      API.getEntries()
+      Amiibo.getEntries()
         .then(
           (data) => {
             this.pageAmount = Math.floor(data.amiibo.length / 10) + (data.amiibo.length % 10 === 0 ? 0 : 1)
@@ -97,6 +103,12 @@ export default Vue.extend({
           }
         )
     },
+    /**
+    * Sorts the list of items in the store.
+    *
+    * @param order - The name of the order `asc` (ascending) or `desc` (descending)
+    * @returns A sorted copy of the item list from the store.
+    */
     sort (order: string): [] {
       let temp: [] = this.$store.state.records.slice()
       if (order === 'asc') {
@@ -113,6 +125,12 @@ export default Vue.extend({
         })
       }
     },
+    /**
+    * Gets a selected range of items from sorted list from the store.
+    *
+    * @param order - The name of the order `asc` (ascending) or `desc` (descending)
+    * @param page - The number of selected page
+    */
     update (order: string, page: number) {
       let start: number = (this.currentPage - 1) * 10
       let end: number = (this.currentPage - 1) * 10 + 10

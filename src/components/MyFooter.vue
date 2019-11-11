@@ -21,13 +21,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API, getCachedCategories } from '../service'
+import { Amiibo, getCachedCategories } from '../service'
 
 /**
   * Footer.
   *
   * @remarks
-  * Shows a generated sitemap.
+  * Shows a sitemap with categories provided by Amiibo servise.
   */
 export default Vue.extend({
   name: 'MyFooter',

@@ -30,7 +30,7 @@
 import Vue from 'vue'
 import Item from '@/components/Item.vue'
 import Record from '@/components/Record.vue'
-import { API } from '../service'
+import { Amiibo } from '../service'
 
 interface Record {
       amiiboSeries: string;
@@ -81,12 +81,12 @@ export default Vue.extend({
     * Gets all data for the Details page.
     *
     * @remarks
-    * First, gets details about the selected item and save it into `record`.
-    * Then gets 3 items from the same category by calling `fetchRelevantRecords` method.
+    * First, gets details about the selected item.
+    * Then gets 3 another items from the same category and game series.
     */
     fetchData () {
       this.loadingDetails = true
-      API.getEntries(this.$route.query)
+      Amiibo.getEntries(this.$route.query)
         .then(data => {
           this.record = data.amiibo
           this.loadingDetails = false
@@ -100,17 +100,16 @@ export default Vue.extend({
     * Gets relevant items.
     *
     * @remarks
-    * Gets 3 items from the given category that not include the item with given title
-    * and save them into `otherRelevantRecords`.
+    * Gets 3 items from the given category and game series that not include the item with given id
     *
-    * @param category - The category of relevant items string
-    * @param title - The title of the item that have to be ignored string
-    *
+    * @param category - The category of relevant items
+    * @param gameSeries - The game series of relevant items
+    * @param id - The id of the item that have to be ignored
     */
     fetchRelevantRecords (category: string, gameSeries:string, id: string) {
       let params = { type: category, gameseries: gameSeries }
       this.loadingRelevant = true
-      API.getEntries(params)
+      Amiibo.getEntries(params)
         .then(data => {
           this.otherRelevantRecords = data.amiibo.filter(
             (record: Record) => id !== record.head + record.tail

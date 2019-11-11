@@ -20,13 +20,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import Item from '@/components/Item.vue'
-import { API } from '../service'
+import { Amiibo } from '../service'
 
 /**
   * Random page.
   *
   * @remarks
-  * Shows details of a random item and provide an oportunity to get another random button.
+  * Shows details of a random item and provide an oportunity to get another random item.
   */
 export default Vue.extend({
   name: 'Random',
@@ -48,21 +48,18 @@ export default Vue.extend({
   },
   created () {
     if (this.$store.state.records.length === 0) {
-      this.fetchData()
+      this.getRandomFromService()
     } else {
       this.getRandom()
     }
   },
   methods: {
     /**
-    * Gets random item.
-    *
-    * @remarks
-    * Gets random item and save it in `record`.
+    * Gets random item from the Amiibo service.
     */
-    fetchData () {
+    getRandomFromService () {
       this.loading = true
-      API.getEntries()
+      Amiibo.getEntries()
         .then(data => {
           this.record = data.amiibo
           this.loading = false
@@ -73,6 +70,9 @@ export default Vue.extend({
           console.error('Fetch error', err)
         })
     },
+    /**
+    * Gets random item from the store.
+    */
     getRandom () {
       let index: number = Math.floor(Math.random() * this.$store.state.records.length)
       this.record = this.$store.state.records[index]
@@ -89,7 +89,7 @@ export default Vue.extend({
 button {
   height: 48px;
   background-color: #E65540;
-  color: #fff;
+  color: white;
   border-style: none;
   border-radius: 5px;
   margin: 0 32px 32px 32px;

@@ -33,16 +33,36 @@ export default Vue.extend({
     }
   },
   methods: {
+    /**
+    * Gets called when the user clicks on the Prev button
+    *
+    * @remarks
+    * Decreases the number of the current page and emit `input` event
+    */
     goToPrev () {
       this.currentPage--
       this.$emit('input', this.currentPage)
     },
+    /**
+    * Gets called when the user clicks on the Next button
+    *
+    * @remarks
+    * Increases the number of the current page and emit `input` event
+    */
     goToNext () {
       this.currentPage++
       this.$emit('input', this.currentPage)
     }
   },
-  props: ['pageAmount', 'value']
+  props: [
+    /**
+    * Total of pages
+    */
+    'pageAmount',
+    /**
+    * Value of the component in the v-model
+    */
+    'value']
 })
 </script>
 
@@ -53,7 +73,7 @@ button {
   padding-right: 12px;
   margin: 0;
   background-color: #E65540;
-  color: #fff;
+  color: white;
   font-size: 16px;
   border: 1px solid #E65540;
   border-radius: 5px;

@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API, getCachedCategories } from '../service'
+import { getCachedCategories } from '../service'
 
 /**
   * Categories page.

@@ -7,14 +7,27 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { API } from '../service'
+import { Amiibo } from '../service'
 
 /**
   * Record displayed in lists.
   */
 export default Vue.extend({
   name: 'Record',
-  props: [ 'id', 'image', 'name' ]
+  props: [
+    /**
+    * Id of the item.
+    */
+    'id',
+    /**
+    * Image of the item.
+    */
+    'image',
+    /**
+    * Name of the item.
+    */
+    'name'
+  ]
 })
 </script>
 

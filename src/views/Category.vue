@@ -23,13 +23,13 @@
 import Vue from 'vue'
 import Record from '@/components/Record.vue'
 import Paginator from '@/components/Paginator.vue'
-import { API } from '../service'
+import { Amiibo } from '../service'
 
 /**
   * Category page.
   *
   * @remarks
-  * Shows 10 records of selected category.
+  * Shows 10 records per page of selected category.
   */
 export default Vue.extend({
   name: 'Home',
@@ -58,6 +58,12 @@ export default Vue.extend({
     this.fetchData()
   },
   methods: {
+    /**
+    * Gets data for the Category page.
+    *
+    * @remarks
+    * Gets a selected range of items from Amiibo service and calculates the total of pages.
+    */
     fetchData () {
       this.records = []
       this.currentPage = Number(this.$route.query.page || 1)
@@ -65,7 +71,7 @@ export default Vue.extend({
         type: this.$route.params.type
       }
       this.loading = true
-      API.getEntries(params)
+      Amiibo.getEntries(params)
         .then(
           (data) => {
             this.pageAmount = Math.floor(data.amiibo.length / 10) + (data.amiibo.length % 10 === 0 ? 0 : 1)
