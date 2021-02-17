@@ -19,7 +19,7 @@ class Amiibo {
    * @public
    */
   static getEntries (params?: object) {
-    var url = new URL(`${this.baseURL}amiibo`)
+    var url = new URL(`${this.baseURL}amiibo/`)
     url.search = new URLSearchParams(<URLSearchParams>params).toString()
     return fetch(url.toString())
       .then(function (response) {
@@ -39,7 +39,7 @@ class Amiibo {
    * @public
    */
   static getCategories () {
-    var url = new URL(`${this.baseURL}type`)
+    var url = new URL(`${this.baseURL}type/`)
     return fetch(url.toString())
       .then(function (response) {
         if (response.status !== 200) {
